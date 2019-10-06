@@ -1,78 +1,76 @@
-const lodash = require('lodash');
 const http = require('http')
 const url = require('url')
 
-const PORT = 3000;
+const PORT = 3000
+const usuariosBD = require('../01-introduccion/usuarios/users')
 
 const server = http.createServer(listener)
 
-server.on('listening', () => {
-    console.log(`Servidor escuchando en el puerto ${PORT}`)
-})
-
-const users = [
-    {
-        id: 1,
-        name: 'pepito'
-    },
-    {
-        id: 2,
-        name: 'juanita'
-    }
-]
-
-function listener(request, response) {
-
-    let data = []
-    request.on('data', chunk => {
-        data.push(chunk)
-    })
-    request.on('end', () => {
-        let dataObject
-        if (data.length > 0) {
-            dataObject = JSON.parse(data)
-        }
-
-        let urlObject = url.parse(request.url, true, false);
-        response = handleRequest(urlObject, request.method, response, dataObject)
-        response.end();
-    })
-}
-
-function handleRequest(urlObject, method, response, data) {
-    
+function listener(req, res) {
+    // aca escribimos response
     try {
-        response.writeHead(200, {
-            'Content-Type': 'application/json'
-        })
-
-        switch (urlObject.pathname) {
+        switch(req.url) {
             case '/users':
-                let userId = urlObject.query.id;
-                switch (method) {
-                    case 'GET':
-                        if (userId) {
-                            let user = lodash.find(users, (user) => user.id == userId)
-                            response.write(JSON.stringify(user))
-                        } else {
-                            response.write(JSON.stringify(users))
-                        }
-                        break;
-                    case 'POST':
-                        users.push(data);
-                        break;
-                }
-
+                res = devolverJsonDeUsuarios(res);
+                break;
+            case '/index.html':
+                res = devolverPaginaWeb(res);
                 break;
             default:
-                    response.statusCode = 400
+                res = devolver404(res)
                 break;
         }
-    } catch (error) {
-        response.statusCode = 500
-        response.write(error.message)
+    } catch(error) {
+        res = devolver500(res, error.message)
     }
-    return response;
+    res.end()
 }
 
-server.listen(PORT)
+function devolver500(res, mensajeDeError) {
+    res.writeHead(500, 'INTERNAL SERVER ERROR', {
+        'Content-Type': 'text/plain'
+    })
+
+    res.write(mensajeDeError)
+    return res;
+}
+
+function devolver404(res) {
+    res.writeHead(404, 'NOT FOUND', {
+        'Content-Type': 'text/plain'
+    })
+
+    res.write('No se encontró el recurso')
+    return res;
+}
+
+function devolverPaginaWeb(res) {
+    res.writeHead(200, 'OK', {
+        'Content-Type': 'text/html'
+    })
+    res.write('<h1>Hola mundo!</h1>')
+    return res;
+}
+
+function devolverJsonDeUsuarios(res) {
+    // Especificamos la respuesta en formato json
+    res.writeHead(200, 'OK', {
+        'Content-Type': 'application/json'
+    })
+    // obtenemos nuestros de base de datos
+    let usuarios = usuariosBD.obtenerUsuarios();
+
+    // convertimos nuestro listado de usuarios a un JSON string
+    let usuariosString = JSON.stringify(usuarios)
+
+    // escribimos el json string en el body del response
+    res.write(usuariosString)
+    return res;
+}
+
+server.on('listening', function () {
+    console.log('El servidor esta escuchando en el puerto ' + PORT)
+})
+
+// pone a escuchar un servidor en http://localhost:3000
+server.listen(PORT, 'localhost')

@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/02-nodejs-y-la-web/servidor.js"
+            "program": "${workspaceFolder}\\servidor-test.js"
         }
     ]
 }
