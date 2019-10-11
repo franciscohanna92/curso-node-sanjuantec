@@ -6,8 +6,10 @@ const usuariosBD = require('../01-introduccion/usuarios/users')
 
 const server = http.createServer(listener)
 
+/**
+ * Este método controla todas las peticiones hechas a nuestro servidor
+ */
 function listener(req, res) {
-    // aca escribimos response
     try {
         switch(req.url) {
             case '/users':
@@ -26,8 +28,8 @@ function listener(req, res) {
     res.end()
 }
 
-function devolver500(res, mensajeDeError) {
-    res.writeHead(500, 'INTERNAL SERVER ERROR', {
+function devolverError500(res, mensajeDeError) {
+    res.writeHead(500, {
         'Content-Type': 'text/plain'
     })
 
@@ -35,8 +37,8 @@ function devolver500(res, mensajeDeError) {
     return res;
 }
 
-function devolver404(res) {
-    res.writeHead(404, 'NOT FOUND', {
+function devolverError404(res) {
+    res.writeHead(404, {
         'Content-Type': 'text/plain'
     })
 
@@ -45,7 +47,7 @@ function devolver404(res) {
 }
 
 function devolverPaginaWeb(res) {
-    res.writeHead(200, 'OK', {
+    res.writeHead(200, {
         'Content-Type': 'text/html'
     })
     res.write('<h1>Hola mundo!</h1>')
@@ -54,7 +56,7 @@ function devolverPaginaWeb(res) {
 
 function devolverJsonDeUsuarios(res) {
     // Especificamos la respuesta en formato json
-    res.writeHead(200, 'OK', {
+    res.writeHead(200, {
         'Content-Type': 'application/json'
     })
     // obtenemos nuestros de base de datos
@@ -68,9 +70,14 @@ function devolverJsonDeUsuarios(res) {
     return res;
 }
 
+/**
+ * Cuando nuestro servidor esté esuchando, escribimos en la consola.
+ */
 server.on('listening', function () {
     console.log('El servidor esta escuchando en el puerto ' + PORT)
 })
 
-// pone a escuchar un servidor en http://localhost:3000
+/**
+ * Ponemos a escuchar un servidor en http://localhost:3000
+ */
 server.listen(PORT, 'localhost')
