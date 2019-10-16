@@ -21,3 +21,19 @@ Posibles mejoras al servidor incluyen:
 1. Definir una ruta que nos permita manejar peticiones del tipo `/users?id=1`, retornando el usuario con el Id especificado en la querystring `?id=1`. Para esto, podemos valernos del módulo `url` y la función `url.parse(req.url)`.
 2. Modularizar nuestro código llevando los _controladores_ de rutas (`devolverPaginaWeb`, `devolverJsonDeUsuarios`, etc), a un archivo llamado `controllers.js` e importar estas funciones desde el módulo `servidor.js`.
 3. Permitir agregar usuarios al arreglo de usuarios mediante una ruta `POST /users` (pueden identificar el método HTTP con `req.method`), enviando los datos del usuario como un JSON en el body del request. Para esto, deben leer el body de un request utilizando los eventos `req.on('data')` y `req.on('end')`, y generando un objeto con `let body = JSON.parse(<datos leidos del request body>)`. 
+
+## 03 Introducción a Express
+En esta clase comenzamos a trabajr con Express, un framework muy popular para desarrllo de APIs en Node.js.
+
+Entendimos como funciona una aplicación de express, analizando como define rutas y y sus respectivos handlers. Analizamos y comprendimos el concepto de middleware y como estos son una funcionalidad principal en Express.
+
+En la parte práctica: 
+
+- Implementamos nuestra primera aplicación de Express a partir del servidor web hecho solo con Node.js de la clase anterior. Vimos como Express identifica el tipo de respuesta que se está devolviendo y setea el header `Content-Type` automaticamente. Esta app se encuentra en `03-express-introduccion/primer-app-express`.
+- Implementamos un middleware para loggear requests a nuestra aplicación. Además, vimos como utilizar middleware de terceros, en particular, como usar `body-parser` para parsear el body JSON de un request. También, vimos como separar la definicion de nuestra app Express, de la definicion del servidor que escuchar peticiones, introduciendo asi el concepto de modularizacion en Express. Todo esto se encuentra en la carpeta `03-express-introduccion/app-middleware-modular`.
+
+Como ejercicios propuesto se dejan:
+1. Investigar el uso de middleware para loggeo como `morgan` o `winston`.
+2. Investigar y deinfinir middleware para manejo de errores y excepciones.
+3. Investigar como establecer los headers de un request en Postman.
+4. Crear un middleware para autenticación que verifique la presencia de un header en el request llamado `Authorization`. Para esto se puede utilizar la propiedad `req.headers` o el metodo `req.header('...')` de los request en los middleware. En caso de no existir dicho header, se debe rechazar el request con un error 401. 
