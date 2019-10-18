@@ -11,10 +11,12 @@ const Mascota = require('../database/models/mascotas.model')
 // Instanciamos un router
 const router = Router()
 
-// Definir el resto de las rutas de mascotas aquí
+// Ruta para obtener todas las mascotas
 router.get('/', function (req, res, next) {
-    db.mascotas
-        .find({}, function (error, mascotas) {
+    // Aca deben verifiar si hay query string
+    // En caso de existir, filtrar segun los parametros
+
+    db.mascotas.find({}, function (error, mascotas) {
             if (error) {
                 next(error)
             }
@@ -22,6 +24,7 @@ router.get('/', function (req, res, next) {
         })
 })
 
+// Ruta para obtener los datos de una mascota en particular
 router.get('/:idMascota', function (req, res, next) {
     const idMascota = req.params.idMascota;
 
@@ -40,8 +43,13 @@ router.get('/:idMascota', function (req, res, next) {
         })
 })
 
+// Ruta para crear una mascota
 router.post('/', function (req, res, next) {
     const data = req.body;
+
+    // Opcionalmente, aqui puede validar los datos del body
+    // Como por ejemplo, que la fecha de nacimiento tenga el formato correcto
+
     const mascota = new Mascota(data.nombre, data.tipo, data.fechaNacimiento)
 
     db.mascotas
@@ -53,6 +61,7 @@ router.post('/', function (req, res, next) {
         })
 })
 
+// Definir el resto de las rutas necesarias aqui debajo
 // ...
 
 // Exportamos nuestro router

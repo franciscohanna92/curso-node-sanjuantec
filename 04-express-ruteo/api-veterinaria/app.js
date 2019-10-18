@@ -27,7 +27,7 @@ app.use('/mascotas', mascotasRouter)
 
 // Establecemos el middleware para manejo de error 404
 app.use((req, res, next) => {
-    res.status(400)
+    res.status(404)
         .send({
             error: 'Recurso no encontrado',
         })
