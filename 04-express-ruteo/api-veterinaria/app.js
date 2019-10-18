@@ -25,12 +25,20 @@ app.get('/', (req, res, next) => {
 // Le indicamos a nuestra app que use los routers
 app.use('/mascotas', mascotasRouter)
 
+// Establecemos el middleware para manejo de error 404
 app.use((req, res, next) => {
-    res.statusCode = 400
-    res
-    .send({
-        error: 'Recurso no encontrado',
-    })
+    res.status(400)
+        .send({
+            error: 'Recurso no encontrado',
+        })
+})
+
+// Establecemos el middleware para manejo de error 500
+app.use((err, req, res, next) => {
+    res.status(500)
+        .send({
+            error: err.message,
+        })
 })
 
 // Exportamos nuestra app

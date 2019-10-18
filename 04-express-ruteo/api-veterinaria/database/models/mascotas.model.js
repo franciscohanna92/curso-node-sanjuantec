@@ -1,6 +1,8 @@
+const uuid = require('uuid/v1')
+
 class Mascota {
-    constructor(id, nombre, tipo, fechaNacimiento) {
-        this.id = id
+    constructor(nombre, tipo, fechaNacimiento) {
+        this._id = uuid()
         this.nombre = nombre
         this.tipo = tipo
         this.fechaNacimiento = fechaNacimiento

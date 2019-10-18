@@ -1,6 +1,8 @@
+const uuid = require('uuid/v1')
+
 class Vacuna {
-    constructor(id, tipo, fechaRealizacion, idMascota) {
-        this.id = id
+    constructor(tipo, fechaRealizacion, idMascota) {
+        this._id = uuid()
         this.tipo = tipo
         this.fechaRealizacion = fechaRealizacion
         this.idMascota = idMascota
