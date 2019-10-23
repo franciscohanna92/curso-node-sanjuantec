@@ -11,14 +11,30 @@ const Mascota = require('../database/models/mascotas.model')
 // Instanciamos un router
 const router = Router()
 
+function parsearParam(paramValue) {
+    if(paramValue == 'true') {
+        return true
+    }
+    if(paramValue == 'false') {
+        return false
+    }
+    return paramValue
+}
+
 // Ruta para obtener todas las mascotas
 router.get('/', function (req, res, next) {
-    // Aca deben verifiar si hay query string
-    // En caso de existir, filtrar segun los parametros
+    let consultaMascota = {}
+    const query = req.query;
 
-    db.mascotas.find({}, function (error, mascotas) {
+    if(Object.keys(query).length > 0) {
+        for(param in query) {
+            consultaMascota[param] = parsearParam(query[param])
+        }
+    }
+
+    db.mascotas.find(consultaMascota, function (error, mascotas) {
             if (error) {
-                next(error)
+                return next(error)
             }
             res.send(mascotas)
         })
@@ -31,13 +47,13 @@ router.get('/:idMascota', function (req, res, next) {
     // Validamos el ID de la mascota buscada
     if (!validator.isUUID(idMascota)) {
         let error = new Error('El id especificado no tiene un formato correcto')
-        next(error)
+        return next(error)
     }
 
     db.mascotas
         .findOne({ _id: idMascota }, function (error, mascota) {
             if (error) {
-                next(error)
+                return next(error)
             }
             res.send(mascota)
         })
@@ -50,14 +66,80 @@ router.post('/', function (req, res, next) {
     // Opcionalmente, aqui puede validar los datos del body
     // Como por ejemplo, que la fecha de nacimiento tenga el formato correcto
 
-    const mascota = new Mascota(data.nombre, data.tipo, data.fechaNacimiento)
+    const mascota = new Mascota(data.nombre, data.tipo, data.esDeRaza, data.raza, data.fechaNacimiento)
 
     db.mascotas
         .insert(mascota, function (error, mascotaInsertada) {
             if (error) {
-                next(error)
+                return next(error)
             }
             res.send(mascotaInsertada)
+        })
+})
+
+// Ruta para eliminar una mascota
+router.delete('/:idMascota', function(req, res, next) {
+    const idMascota = req.params.idMascota;
+
+    // Validamos el ID de la mascota buscada
+    if (!validator.isUUID(idMascota)) {
+        let error = new Error('El id especificado no tiene un formato correcto')
+        return next(error)
+    }
+
+    db.mascotas.remove({_id: idMascota}, function(error, seEliminoLaMascota) {
+        if(error) {
+            return next(error)
+        }
+
+        if(seEliminoLaMascota) {
+            res.send({
+                "mensaje": "Mascota eliminada con éxito"
+            })
+        } else {
+            let error = new Error('No se puedo eliminar la mascota')
+            return next(error)
+        }
+    })
+})
+
+// Ruta para actualizar una mascota
+router.patch('/:idMascota', function(req, res, next) {
+    const data = req.body
+    const idMascota = req.params.idMascota;
+
+    // Validamos el ID de la mascota buscada
+    if (!validator.isUUID(idMascota)) {
+        let error = new Error('El id especificado no tiene un formato correcto')
+        return next(error)
+    }
+
+    db.mascotas
+        .findOne({ _id: idMascota }, function (error, mascotaParaActualizar) {
+            if (error) {
+                return next(error)
+            }
+            
+            for(param in data) {
+                if(mascotaParaActualizar.hasOwnProperty(param)) {
+                    mascotaParaActualizar[param] = parsearParam(data[param])
+                }
+            }
+
+            db.mascotas.update({_id: idMascota}, mascotaParaActualizar, function(error, seActualizoLamascota) {
+                if(error) {
+                    return next(error)
+                }
+
+                if(seActualizoLamascota) {
+                    res.send({
+                        mensaje: "La mascota fue actualizada"
+                    })
+                } else {
+                    let error = new Error('No se pudo actualizar la mascota')
+                    return next(error)
+                }
+            })
         })
 })
 

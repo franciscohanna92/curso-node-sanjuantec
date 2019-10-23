@@ -15,6 +15,15 @@ const app = express()
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 
+// function checkQuery(req, res, next) {
+//     if(Object.keys(req.query).length == 0) {
+//         req.query = null
+//     }
+//     next()
+// }
+
+// app.use(checkQuery)
+
 app.get('/', (req, res, next) => {
     res.send({
         nombre: 'API Veterinaria',
