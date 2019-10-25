@@ -15,21 +15,16 @@ const app = express()
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 
-// function checkQuery(req, res, next) {
-//     if(Object.keys(req.query).length == 0) {
-//         req.query = null
-//     }
-//     next()
-// }
-
-// app.use(checkQuery)
-
 app.get('/', (req, res, next) => {
     res.send({
         nombre: 'API Veterinaria',
         version: '1.0.0'
     })
 })
+ 
+const swaggerUi = require('swagger-ui-express');
+const apiDocs = require('./docs')
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(apiDocs));
 
 // Le indicamos a nuestra app que use los routers
 app.use('/mascotas', mascotasRouter)

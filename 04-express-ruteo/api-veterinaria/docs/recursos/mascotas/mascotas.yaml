@@ -1,0 +1,42 @@
+get:
+  tags:
+  - mascotas
+  summary: Obtener un listado de las mascotas existentes
+  operationId: obtenerMascotas
+  responses:
+    200:
+      description: Operación exitosa
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../../modelos/mascota.yaml'
+    500:
+      description: Hubo un error al obtener el listado de mascotas
+      content: {}
+post:
+  tags:
+  - pet
+  summary: Add a new pet to the store
+  operationId: addPet
+  requestBody:
+    description: Pet object that needs to be added to the store
+    content:
+      application/json:
+        schema:
+          $ref: '../../modelos/mascota.yaml'
+    required: true
+  responses:
+    201:
+      description: La mascota fue creada con éxito
+      content:
+        application/json:
+          schema:
+            $ref: '../../modelos/mascota.yaml'
+    400:
+      description: Los datos de la mascota son incorrectos
+      content: {}
+    500:
+      description: Ocurrió un error al crear la mascota
+      content: {}
