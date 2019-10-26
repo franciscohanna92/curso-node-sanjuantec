@@ -28,11 +28,11 @@ paths:
           content: {}
     post:
       tags:
-      - pet
-      summary: Add a new pet to the store
-      operationId: addPet
+      - Mascotas
+      summary: Agregar una nueva mascota
+      operationId: agregarMascota
       requestBody:
-        description: Pet object that needs to be added to the store
+        description: Objeto mascota a ser creado
         content:
           application/json:
             schema:
