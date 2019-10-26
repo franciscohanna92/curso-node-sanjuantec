@@ -22,7 +22,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#components/schemas/Mascota'
+                  $ref: '#/components/schemas/Mascota'
         500:
           description: Hubo un error al obtener el listado de mascotas
           content: {}
@@ -36,7 +36,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#components/schemas/Mascota'
+              $ref: '#/components/schemas/Mascota'
         required: true
       responses:
         201:
@@ -44,7 +44,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#components/schemas/Mascota'
+                $ref: '#/components/schemas/Mascota'
         400:
           description: Los datos de la mascota son incorrectos
           content: {}
@@ -78,5 +78,5 @@ components:
         # vacunas:
         #   type: array
         #   items:
-        #     $ref: './vacuna.yaml'
+        #     $ref: '#/components/vacuna.yaml'
           
