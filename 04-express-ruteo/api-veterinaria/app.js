@@ -5,6 +5,10 @@ const express = require('express')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 
+// Importamos la documentacion de la API
+const swaggerUi = require('swagger-ui-express')
+const apiDocs = require('./docs/index.js')
+
 // Importamos los routers
 const mascotasRouter = require('./routes/mascotas.js')
 
@@ -22,9 +26,8 @@ app.get('/', (req, res, next) => {
     })
 })
  
-const swaggerUi = require('swagger-ui-express');
-const apiDocs = require('./docs')
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(apiDocs));
+// Montamos la documentacion en la ruta /docs
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(apiDocs));
 
 // Le indicamos a nuestra app que use los routers
 app.use('/mascotas', mascotasRouter)

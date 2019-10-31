@@ -1,4 +1,4 @@
-const YAML = require('yamljs');
-const swaggerDocument = YAML.load('./docs/openapi.yaml');
+const yamljs = require('yamljs');
+const doc = yamljs.load('./docs/openapi.yaml');
 
-module.exports = swaggerDocument;
+module.exports = doc;

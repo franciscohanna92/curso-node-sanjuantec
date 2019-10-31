@@ -143,8 +143,5 @@ router.patch('/:idMascota', function(req, res, next) {
         })
 })
 
-// Definir el resto de las rutas necesarias aqui debajo
-// ...
-
 // Exportamos nuestro router
 module.exports = router;
