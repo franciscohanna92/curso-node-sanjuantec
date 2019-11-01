@@ -177,7 +177,7 @@
 					"response": []
 				},
 				{
-					"name": "Debe bbtener una mascota por ID",
+					"name": "Debe obtener una mascota por ID",
 					"event": [
 						{
 							"listen": "test",
@@ -192,8 +192,7 @@
 									"",
 									"pm.test(\"La respuesta debe ser una mascota válida\", function () {",
 									"    const responseBody = pm.response.json();",
-									"    const esMascotaValida = tv4.validate(responseBody, esquemaMascota)",
-									"    pm.expect(esMascotaValida).to.be.true;",
+									"    pm.expect(tv4.validate(responseBody, esquemaMascota)).to.be.true;",
 									"});",
 									""
 								],
@@ -235,7 +234,7 @@
 							"variable": [
 								{
 									"key": "idMascota",
-									"value": "{{idMascota}}"
+									"value": ""
 								}
 							]
 						}
@@ -292,7 +291,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"nombre\": \"Juanito\",\n\t\"tipo\": \"PERRO\",\n\t\"esDeRaza\": false,\n\t\"raza\": null,\n\t\"fechaNacimiento\": \"2019-01-01\"\n}",
+							"raw": "{\n\t\"nombre\": \"Juanito\",\n\t\"tipo\": \"PERRO\",\n\t\"esDeRaza\": false,\n\t\"raza\": null,\n\t\"fechaNacimiento\": \"2019-12-01\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -410,36 +409,47 @@
 				"type": "text/javascript",
 				"exec": [
 					"pm.collectionVariables.set(\"respuestaFallida\", JSON.stringify({",
-					"  \"mensaje\": {",
-					"    \"type\": \"string\"",
-					"  },",
-					"  \"status\": {",
-					"      \"type\": \"number\"",
-					"  }",
+					"    \"properties\": {",
+					"        \"mensaje\": {",
+					"            \"type\": \"string\"",
+					"        },",
+					"        \"status\": {",
+					"          \"type\": \"number\"",
+					"        }",
+					"    }",
 					"}));",
 					"",
 					"pm.collectionVariables.set(\"esquemaMascota\", JSON.stringify({",
-					"  \"_id\": {",
-					"    \"type\": \"string\",",
-					"    \"length\": 36",
-					"  },",
-					"  \"nombre\": {",
-					"    \"type\": \"string\"",
-					"  },",
-					"  \"tipo\": {",
-					"    \"type\": \"string\",",
-					"    \"enum\": [\"PERRO\", \"GATO\"]",
-					"  },",
-					"  \"raza\": {",
-					"      \"type\": \"string\"",
-					"  },",
-					"  \"esDeRaza\": {",
-					"      \"type\": \"boolean\"",
-					"  },",
-					"  \"fechaNacimiento\": {",
-					"      \"type\": \"string\",",
-					"      \"format\": \"date\"",
-					"  }",
+					"    \"properties\": {",
+					"        \"_id\": {",
+					"            \"type\": \"string\",",
+					"            \"length\": 36",
+					"        },",
+					"        \"nombre\": {",
+					"            \"type\": \"string\"",
+					"        },",
+					"        \"tipo\": {",
+					"            \"type\": \"string\",",
+					"            \"enum\": [\"PERRO\", \"GATO\"]",
+					"        },",
+					"        \"raza\": {",
+					"            \"anyOf\": [",
+					"                {",
+					"                    \"type\": \"string\"",
+					"                }, ",
+					"                {",
+					"                    \"type\":  null",
+					"                }",
+					"            ]",
+					"        },",
+					"        \"esDeRaza\": {",
+					"            \"type\": \"boolean\"",
+					"        },",
+					"        \"fechaNacimiento\": {",
+					"            \"type\": \"string\",",
+					"            \"format\": \"date\"",
+					"        }",
+					"    }",
 					"}));"
 				]
 			}
@@ -457,27 +467,27 @@
 	],
 	"variable": [
 		{
-			"id": "6741168c-e8f0-48f9-8f01-f9cf4eb2b9ae",
+			"id": "49a117e2-e30a-432e-ad0b-545ef9e8997b",
 			"key": "baseUrl",
 			"value": "http://localhost:3000",
 			"type": "string"
 		},
 		{
-			"id": "c8a6dd6c-6ea6-43a9-955d-d22b2ecc3225",
+			"id": "5e5495c7-3405-489d-a112-30b1ca2a6efc",
 			"key": "respuestaFallida",
-			"value": "{\"mensaje\":{\"type\":\"string\"},\"status\":{\"type\":\"number\"}}",
+			"value": "{\"properties\":{\"mensaje\":{\"type\":\"string\"},\"status\":{\"type\":\"number\"}}}",
 			"type": "string"
 		},
 		{
-			"id": "09f2a18d-7798-4002-a6c4-fe545d4d2c41",
+			"id": "bab20c9a-9e44-46f8-80e0-1faa846b1164",
 			"key": "esquemaMascota",
-			"value": "{\"_id\":{\"type\":\"string\",\"length\":36},\"nombre\":{\"type\":\"string\"},\"tipo\":{\"type\":\"string\",\"enum\":[\"PERRO\",\"GATO\"]},\"raza\":{\"type\":\"string\"},\"esDeRaza\":{\"type\":\"boolean\"},\"fechaNacimiento\":{\"type\":\"string\",\"format\":\"date\"}}",
+			"value": "{\"properties\":{\"_id\":{\"type\":\"string\",\"length\":36},\"nombre\":{\"type\":\"string\"},\"tipo\":{\"type\":\"string\",\"enum\":[\"PERRO\",\"GATO\"]},\"raza\":{\"anyOf\":[{\"type\":\"string\",\"optional\":true},{\"type\":null}]},\"esDeRaza\":{\"type\":\"boolean\"},\"fechaNacimiento\":{\"type\":\"string\",\"format\":\"date\"}}}",
 			"type": "string"
 		},
 		{
-			"id": "09ed5425-082b-4e1f-83f0-405422b1fdf0",
+			"id": "480fcf28-b9e5-4e43-9afb-28ccd2dfd06a",
 			"key": "idMascota",
-			"value": "bd7c8840-fc4c-11e9-93ea-3fccf7369547",
+			"value": "ca65bbd0-fcf6-11e9-8473-c5aee923fb46",
 			"type": "string"
 		}
 	],
