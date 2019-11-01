@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 
 // Importamos la documentacion de la API
 const swaggerUi = require('swagger-ui-express')
-const apiDocs = require('./docs/index.js')
+const apiDocs = require('./docs/openapi')
 
 // Importamos los routers
 const mascotasRouter = require('./routes/mascotas.js')
@@ -22,8 +22,16 @@ app.use(bodyParser.json())
 app.get('/', (req, res, next) => {
     res.send({
         nombre: 'API Veterinaria',
-        version: '1.0.0'
+        version: '1.0.0',
+        links:  [
+            {rel: 'mascotas', href: '/mascotas'}
+        ]
     })
+})
+
+app.options('/', (req, res, next) => {
+    res.header('Allow', 'GET, OPTIONS')
+        .send();
 })
  
 // Montamos la documentacion en la ruta /docs
@@ -42,10 +50,8 @@ app.use((req, res, next) => {
 
 // Establecemos el middleware para manejo de error 500
 app.use((err, req, res, next) => {
-    res.status(500)
-        .send({
-            error: err.message,
-        })
+    res.status(err.status || 500)
+        .send(err)
 })
 
 // Exportamos nuestra app

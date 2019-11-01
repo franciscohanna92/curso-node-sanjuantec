@@ -1,0 +1,315 @@
+{
+	"info": {
+		"_postman_id": "49b4fec4-c84c-41a0-8a98-95b9d75c0b5d",
+		"name": "API Veterinaria - Docs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Mascotas",
+			"item": [
+				{
+					"name": "Crear una mascota",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\": \"Roberta\",\n\t\"tipo\": \"GATO\",\n\t\"esDeRaza\": true,\n\t\"raza\": \"Siamés\",\n\t\"fechaNacimiento\": \"2019-01-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/mascotas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"mascotas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener una mascota por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/mascotas/:idMascota",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"mascotas",
+								":idMascota"
+							],
+							"variable": [
+								{
+									"key": "idMascota",
+									"value": "",
+									"description": "El ID de la mascota a obtener"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar los datos de una mascota",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\": \"Juanito\",\n\t\"tipo\": \"PERRO\",\n\t\"esDeRaza\": false,\n\t\"fechaNacimiento\": \"2019-01-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/mascotas/:idMascota",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"mascotas",
+								":idMascota"
+							],
+							"variable": [
+								{
+									"key": "idMascota",
+									"value": "",
+									"description": "El ID de la mascota a actualizar"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar una mascota",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/mascotas/:idMascota",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"mascotas",
+								":idMascota"
+							],
+							"variable": [
+								{
+									"key": "idMascota",
+									"value": "",
+									"description": "El ID de la mascota a eliminar"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener todas las mascotas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\": \"Juanito\",\n\t\"tipo\": \"PERRO\",\n\t\"esDeRaza\": false,\n\t\"fechaNacimiento\": \"2019-01-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/mascotas?tipo=GATO&esDeRaza=true",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"mascotas"
+							],
+							"query": [
+								{
+									"key": "tipo",
+									"value": "GATO",
+									"description": "El tipo de mascota a buscar"
+								},
+								{
+									"key": "esDeRaza",
+									"value": "true",
+									"description": "Busca mascotas de raza o no"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Index",
+			"request": {
+				"method": "OPTIONS",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Index",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0390fac8-ea7c-4c52-8d99-e21072e046e4",
+						"exec": [
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}",
+					"host": [
+						"{{baseUrl}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a2ce0c9e-afb1-4876-8d19-7edd9c7febf3",
+				"type": "text/javascript",
+				"exec": [
+					"pm.collectionVariables.set(\"respuestaFallida\", JSON.stringify({",
+					"  \"mensaje\": {",
+					"    \"type\": \"string\"",
+					"  },",
+					"  \"status\": {",
+					"      \"type\": \"number\"",
+					"  }",
+					"}));"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "dd987927-36f8-43ba-8b3b-0c67dc95d5ca",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "b0c2363d-e5cb-4604-ac9a-70405ea3b7f1",
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"id": "1813b258-5fbb-4454-b4d1-1fa7c72943d8",
+			"key": "respuestaFallida",
+			"value": "{\"mensaje\":{\"type\":\"string\"},\"status\":{\"type\":\"number\"}}",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
