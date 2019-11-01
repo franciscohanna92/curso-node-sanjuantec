@@ -51,7 +51,7 @@ En esta clase se vió la arquitectura REST, sus ventajas y restricciones de dise
 
 En la parte de ejercitación, seguimos trabajando sobre la API vterinaria, extendiendo la misma con las restricciones de diseño REST, agregando rutas OPTIONS, hipervínculos a los documentos JSON y status  HTTP más claros y descriptivos.
 
-## REST: Diseño y documentación
+## 06 REST: Diseño y documentación
 En esta clase analizamos como y por que debemos diseñar y documentar nuestras APIs. Particularmente, nos enfocamos en la _Open API Specification v3_ para generar documentación.
 
 En la parte de ejercitación nos enfocamos en escribir un documento OAS3 para la API veterinaria, para luego aprender a generar un documento HTML con la especificación de nuestra API. A este documento HTML lo montamos en una ruta de nuestra API Veterinaria para que sea accesible por parte de los usuarios.
