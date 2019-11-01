@@ -37,3 +37,21 @@ Como ejercicios propuesto se dejan:
 2. Investigar y deinfinir middleware para manejo de errores y excepciones.
 3. Investigar como establecer los headers de un request en Postman.
 4. Crear un middleware para autenticación que verifique la presencia de un header en el request llamado `Authorization`. Para esto se puede utilizar la propiedad `req.headers` o el metodo `req.header('...')` de los request en los middleware. En caso de no existir dicho header, se debe rechazar el request con un error 401. 
+
+## 04 Ruteo en Express
+En esta clase se estudiaron los conceptos de ruteo a nivel general y particularmente en Express
+Sobre rutas vimos los conceptos de querystring, path parameters y se repasaron los verbos HTTP y su semántica asociada. 
+
+Luego se vió como manejar querystring y path parameters en Express, en conjunto con el uso del submódulo Router. Este último se utilizó para modularizar una aplicación. 
+
+A nivel de ejercitación comenzamos a trabajar sobre una API para el sistema de una veterinaria, aplicando los conceptos vistos hasta el momento.
+
+## 05 REST: Arquitectura y APIs
+En esta clase se vió la arquitectura REST, sus ventajas y restricciones de diseño que aplica sobre una API. Comprendimos que REST es la manera en la cuál funciona actualmente la web y que es una arquitectura de software que DEBEMOS seguir en el desarrollo de nuestras APIs.
+
+En la parte de ejercitación, seguimos trabajando sobre la API vterinaria, extendiendo la misma con las restricciones de diseño REST, agregando rutas OPTIONS, hipervínculos a los documentos JSON y status  HTTP más claros y descriptivos.
+
+## REST: Diseño y documentación
+En esta clase analizamos como y por que debemos diseñar y documentar nuestras APIs. Particularmente, nos enfocamos en la _Open API Specification v3_ para generar documentación.
+
+En la parte de ejercitación nos enfocamos en escribir un documento OAS3 para la API veterinaria, para luego aprender a generar un documento HTML con la especificación de nuestra API. A este documento HTML lo montamos en una ruta de nuestra API Veterinaria para que sea accesible por parte de los usuarios.
