@@ -1,0 +1,15 @@
+openapi: 3.0.0
+info:
+  title: Pichichos API
+  description: 'Documentación para Pichichos API'
+  contact:
+    email: tu@email.com
+  version: 1.0.0
+servers:
+- url: localhost
+paths:
+  # Aquí se definen las rutas de la aplicación
+components:
+  schemas:
+    # Aquí se definen los schemas de los recursos
+          
