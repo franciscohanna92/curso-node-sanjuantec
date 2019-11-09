@@ -1,11 +1,13 @@
 const http = require('http')
 const app = require('./app.js')
-const PORT = 3000
+
+// Importamos dotenv
+const dotenv = require('dotenv')
+
+// Esta funcion busca automáticamente el archivo .env
+dotenv.config()
 
 const server = http.createServer(app)
 
-server.on('listening', function() {
-    console.info(`Servidor escuchando en http://localhost:${PORT}`)
-})
-
-server.listen(PORT)
+// Utilizamos la variable de ambiente PORT
+server.listen(process.env.PORT)

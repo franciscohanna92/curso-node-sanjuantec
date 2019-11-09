@@ -4,9 +4,11 @@ const router = Router()
 const db = require('../database')
 const Mascota = require('../database/modelos/Mascota')
 
-router.get('/', function (req, res, next) {
+const autorizar = require('../middleware/autorizar')
+
+router.get('/', autorizar, function (req, res, next) {
     db.mascotas
-        .find({}, function (error, mascotas) {
+        .find({ idUsuario: res.locals.idUsuario }, function (error, mascotas) {
             if (error) {
                 return next(error)
             }
@@ -14,8 +16,8 @@ router.get('/', function (req, res, next) {
         })
 })
 
-router.post('/', function (req, res, next) {
-    const mascota = new Mascota(req.body.nombre)
+router.post('/', autorizar, function (req, res, next) {
+    const mascota = new Mascota(req.body.nombre, res.locals.idUsuario)
 
     db.mascotas
         .insert(mascota, function (error, mascotaInsertada) {
