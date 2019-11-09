@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "b8b57c04-5798-426c-8c4f-28087f8a929a",
+		"name": "08_seguridad",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Mascotas",
+			"item": [
+				{
+					"name": "Obtener todas las mascotas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/mascotas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"mascotas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear una mascota",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\": \"Ramon\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/mascotas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"mascotas"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1f5aebe1-d502-433f-bc6c-00454a97e334",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab6a023c-de0b-4479-b0c4-c776ecf43274",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Crear usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"pepito@gmail.com\",\n\t\"password\": \"123456\",\n\t\"rol\": \"ADMIN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d53c312e-2e27-40f8-8efb-aeabfcd4e27c",
+								"exec": [
+									"pm.collectionVariables.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"pepe@gmail.com\",\n\t\"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "69e7a7e3-3681-48c1-892d-a106bffc5de4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b842071e-1c60-4ad5-a65d-ecd6560d2f23",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "3bcc03ad-ddb5-46e1-967f-06b902e2fa69",
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"id": "9d982aaf-78c0-430c-918c-d8aa982553ef",
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcGkudmV0ZXJpbmFyaWEuY29tIiwiZXhwIjoxNTczMzExMzc0LCJpZFVzdWFyaW8iOiJiNmU5ZGUzMC0wMmYzLTExZWEtYjhiYS0zNzFlYTBiNzI0OWUiLCJyb2wiOiJBRE1JTiIsImlhdCI6MTU3MzMwNzc3NH0.MqV0e_AE1AY9MW4RnJCgzG3s96CO1O8f52fk5nttQeA",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

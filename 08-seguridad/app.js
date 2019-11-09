@@ -9,7 +9,9 @@ const mascotasRouter = require('./routes/mascotas')
 
 const app = express()
 
+// Usamos helmet con opciones por defecto
 app.use(helmet())
+
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 

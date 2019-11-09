@@ -4,6 +4,7 @@ const router = Router()
 const db = require('../database')
 const Mascota = require('../database/modelos/Mascota')
 
+// Importamos el middleware de autorizacion
 const autorizar = require('../middleware/autorizar')
 
 router.get('/', autorizar, function (req, res, next) {
