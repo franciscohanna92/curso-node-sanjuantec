@@ -1,4 +1,6 @@
 # Curso Node.js - San Juan TEC
+Pueden encontrar las diapositivas de este curso en [este link](https://drive.google.com/drive/folders/1CeIiivTlv19YdhY07x703GxCAJ-jhw9s)
+
 En este repositorio encontrarás los programas y módulos que vayamos desarrollando durante el cursado. 
 
 Habrá una carpeta por cada clase y dentro de la misma el código escrito en esa clase. 
