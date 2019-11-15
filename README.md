@@ -61,4 +61,6 @@ En esta clase analizamos las diferentes maneras y estrategias que tenemos para t
 
 Para este fin, vimos como utilizar Postman y como escribirs tests para luego correrlos con un Runner. También vimos como utilizamos `newman` para poder correr los tests escritos desde la consola, exportando previamente el JSON de la colección.
 
-Estas tareas prácticas se vieron reflejadas en el proyecto de API veterinaria que se encuentra en `04-express-ruteo/api-veterinaria`. Particularmente, encontraremos la colección de Postman a modo de documentación en 
+Estas tareas prácticas se vieron reflejadas en el proyecto de API veterinaria que se encuentra en `04-express-ruteo/api-veterinaria`. Particularmente, encontraremos la colección de Postman a modo de documentación en `docs/postman/API Veterinaria - Docs.postman_collection.json`, y la colección con tests en `test/postman-test.json`. 
+
+Para ejecutar los tests podemos correr el comando `npm test` (el servidor debe estar corriendo previamente)
