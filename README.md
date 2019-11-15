@@ -55,3 +55,10 @@ En la parte de ejercitación, seguimos trabajando sobre la API vterinaria, exten
 En esta clase analizamos como y por que debemos diseñar y documentar nuestras APIs. Particularmente, nos enfocamos en la _Open API Specification v3_ para generar documentación.
 
 En la parte de ejercitación nos enfocamos en escribir un documento OAS3 para la API veterinaria, para luego aprender a generar un documento HTML con la especificación de nuestra API. A este documento HTML lo montamos en una ruta de nuestra API Veterinaria para que sea accesible por parte de los usuarios.
+
+## 07 Testing
+En esta clase analizamos las diferentes maneras y estrategias que tenemos para testear nuestra API, concentrandonos en test automatizados.
+
+Para este fin, vimos como utilizar Postman y como escribirs tests para luego correrlos con un Runner. También vimos como utilizamos `newman` para poder correr los tests escritos desde la consola, exportando previamente el JSON de la colección.
+
+Estas tareas prácticas se vieron reflejadas en el proyecto de API veterinaria que se encuentra en `04-express-ruteo/api-veterinaria`. Particularmente, encontraremos la colección de Postman a modo de documentación en 
