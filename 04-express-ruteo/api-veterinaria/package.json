@@ -28,7 +28,7 @@
     "swagger-tools": "^0.10.4",
     "swagger-ui-express": "^4.1.2",
     "uuid": "^3.3.3",
-    "validator": "^11.1.0",
+    "validator": "^13.7.0",
     "yamljs": "^0.3.0"
   }
 }
