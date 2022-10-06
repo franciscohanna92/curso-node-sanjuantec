@@ -18,7 +18,7 @@
     "@openapitools/openapi-generator-cli": "^1.0.1-4.1.3",
     "body-parser": "^1.19.0",
     "bootprint": "^1.0.2",
-    "bootprint-openapi": "^1.1.1",
+    "bootprint-openapi": "^4.0.4",
     "express": "^4.17.1",
     "js-yaml": "^3.13.1",
     "json-refs": "^3.0.13",
