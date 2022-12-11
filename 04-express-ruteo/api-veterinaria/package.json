@@ -19,7 +19,7 @@
     "body-parser": "^1.19.0",
     "bootprint": "^1.0.2",
     "bootprint-openapi": "^1.1.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "js-yaml": "^3.13.1",
     "json-refs": "^3.0.13",
     "morgan": "^1.9.1",
